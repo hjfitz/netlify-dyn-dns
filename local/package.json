@@ -1,0 +1,12 @@
+{
+  "name": "netlify-dyn-dns-local",
+  "version": "1.0.0",
+  "description": "Local code to ping dyndns client",
+  "main": "index.js",
+  "type": "module",
+  "license": "GPL-2.0",
+  "private": false,
+  "dependencies": {
+    "node-fetch": "^3.2.2"
+  }
+}

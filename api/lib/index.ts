@@ -1,9 +1,9 @@
+// todo: does netlify have an internal logger?
 import {Handler, HandlerEvent} from '@netlify/functions'
 import {StatusCodes, getReasonPhrase} from 'http-status-codes'
 import config from './config'
 import {setDNSRecord} from './netlify-dns.service'
 
-// todo: does netlify have an internal logger?
 export function createResponse<T>(code: number, body?: T)  {
 	return {
 		statusCode: code,
@@ -11,6 +11,9 @@ export function createResponse<T>(code: number, body?: T)  {
 	}
 }
 
+// expected params
+// token=$our_token_set_in_env
+// hostname=$some_sumdomain
 export function validateIncomingRequest(event: HandlerEvent): StatusCodes | null {
 	const apiToken = config.get('API_TOKEN', true)
 	if (!event.queryStringParameters) {
@@ -29,9 +32,6 @@ export function validateIncomingRequest(event: HandlerEvent): StatusCodes | null
 	return null
 }
 
-// expected params
-// token=$our_token_set_in_env
-// hostname=$some_sumdomain
 export const handler: Handler = async (event) => {
 	const invalidResponseCode = validateIncomingRequest(event)
 	if (invalidResponseCode) {
