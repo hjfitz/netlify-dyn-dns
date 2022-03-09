@@ -1,0 +1,8 @@
+node_modules/
+
+dist/
+coverage/
+
+*dist/
+api/dist/
+api/.env.local
